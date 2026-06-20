@@ -11,6 +11,12 @@ namespace VendasWeb.Controllers
             return View();
         }
 
+        public IActionResult Sobre()
+        {
+            ViewData["Message"] = "Vendas";
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
