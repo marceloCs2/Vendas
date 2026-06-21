@@ -8,7 +8,7 @@ namespace VendasWeb
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("VendasWebContext") ?? throw new InvalidOperationException("Connection string 'VendasWebContext' not found.");
 
-            builder.Services.AddDbContext<VendasWebContext>(options => options.UseSqlServer(connectionString));
+            builder.Services.AddDbContext<VendasWebContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
