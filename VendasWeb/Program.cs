@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 namespace VendasWeb
 {
     public class Program
@@ -5,6 +6,9 @@ namespace VendasWeb
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("VendasWebContext") ?? throw new InvalidOperationException("Connection string 'VendasWebContext' not found.");
+
+            builder.Services.AddDbContext<VendasWebContext>(options => options.UseSqlServer(connectionString));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
