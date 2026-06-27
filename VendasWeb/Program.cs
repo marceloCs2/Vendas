@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using VendasWeb.Data;
+using VendasWeb.Services;
 namespace VendasWeb
 {
     public class Program
@@ -12,6 +13,8 @@ namespace VendasWeb
             builder.Services.AddDbContext<VendasWebContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
             builder.Services.AddScoped<SeedingService>();
+
+            builder.Services.AddScoped<VendedorService>();
 
             builder.Services.AddControllersWithViews();
 
