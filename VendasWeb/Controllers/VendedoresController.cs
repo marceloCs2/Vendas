@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VendasWeb.Services;
+using VendasWeb.Models;
 
 namespace VendasWeb.Controllers
 {
@@ -19,5 +20,18 @@ namespace VendasWeb.Controllers
 
             return View(list);
         }
-    }
+
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Criar(Vendedor vendedor)
+        {
+            _vendedorService.Insert(vendedor);
+            return RedirectToAction(nameof(Index));
+        }
+}
 }
